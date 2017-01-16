@@ -1,2 +1,2 @@
-# Robot2
-Repo for programs for robot2.
+# Lego2
+Repo for programs for Lego2 robot.

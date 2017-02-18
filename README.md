@@ -1,2 +1,2 @@
-# Lego2
-Repo for programs for Lego2 robot.
+# Lollipop
+This repo contains the code for Lollipop, our Create robot for the double elimination rounds.

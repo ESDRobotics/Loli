@@ -3,7 +3,7 @@ This repo contains the code for Lollipop, our Create robot for the double elimin
 
 
 
-TO-DO :
+## Current Tasks TODO:
         - [X] move the functions to a library file
         - [ ] add more movement functions for the claw
         - [ ] finish adding the gyro and accel testing to the testing file

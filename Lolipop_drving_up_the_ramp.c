@@ -85,35 +85,15 @@ int main()
     motor (left_motor, -100*l_motor_factor);
     motor (right_motor, -100*r_motor_factor);
 msleep(1500);
-    int i;
-    for(i = 1; i<20; i++){
-        set_servo_position(raise_robot, rampPosition);
-    msleep(150);
-        set_servo_position(raise_robot, low);
-    }
-
+   
+        set_servo_position(raise_robot, rampPosition);       
     msleep(2000);
-
-
-
-    /*
-    //drive on to the ramp
-    drive(100, 10, backward);
-
-    //call the ramp method
-    moveWheels(rampPosition);
-    msleep(400);
-    while(analog (right_light) < 4050){
-        motor (left_motor, -50);
-       	motor (right_motor, -25);
-        msleep(20);
-    }
     driveUpTheRamp();
+    drive(75, 5, forward);
     twoStepTurn(75, 860, right, backward);// this is a place that it could go wrong bc I changed it to backward from forward
     // initial two stage turn procedure
     drive(75, 5, forward);
     twoStepTurn(75, 860, right, backward);// this is a place that it could go wrong bc I changed it to backward from forward
-*/
     return 0;
 }
 
@@ -132,12 +112,12 @@ Parameters  : int speed     - the speed (0-100) at which the robot will turn
 */
 void drive(int speed, int distance, int direction){
     int tick_distance = ticks_per_centimeter * distance;
-	clear_motor_position_counter(left_motor);
-	while (fabs(get_motor_position_counter(left_motor)) < tick_distance){
-		motor (left_motor, (int)(speed*direction*l_motor_factor));
-		motor (right_motor, (int)(speed*direction));
-	}
-	msleep(0);
+  clear_motor_position_counter(left_motor);
+  while (fabs(get_motor_position_counter(left_motor)) < tick_distance){
+    motor (left_motor, (int)(speed*direction*l_motor_factor));
+    motor (right_motor, (int)(speed*direction));
+  }
+  msleep(0);
 }
 
 /* Name     : driveUpTheRamp

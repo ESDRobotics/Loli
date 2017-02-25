@@ -1,104 +1,3 @@
-/*
-
-Author : Nathaniel Mann (except for drive up ramp method)
-TO-DO :
-        X move the fucntions to a library file
-
-
-
-
-NOTES
-      How to //print accel values
-        //printf("%i\n",accel_y());
-        //printf("%i\n",accel_y());
-
-
-
-
-
-
-
-*/
-
-
-
-
-#include <kipr/botball.h>
-///////////////////////////////////////////////////////////////////////////////
-//preprocessor definitions
-///////////////////////////////////////////////////////////////////////////////
-
-// general usefull information
-#define ticks 955.8
-#define ticks_per_centimeter ticks/18
-#define l_motor_factor  1//0.55
-#define r_motor_factor 1
-
-#define axisSensor 30
-
-//servos and motors
-#define left_motor 0
-#define right_motor 1
-#define lift_arm 2//farthest is 1200, closest is 170
-#define raise_robot 0//1630 is highest, 140 is lowest
-#define lift_claw 3//-100 is highest, 2360 is lowest
-#define open_claw 1//2000 is closed, 900 is open
-
-// sensors
-#define left_light 1
-#define right_light 0
-
-// directions for driviing and turns
-#define forward 1
-#define backward -1
-#define right -1
-#define left 1
-
-// positons for the wheels
-#define tall 1630
-#define low 0
-#define rampPosition 800
-
-
-///////////////////////////////////////////////////////////////////////////////
-// fucntion definitons
-///////////////////////////////////////////////////////////////////////////////
-void moveWheels(int wheelPosition);
-void driveUpTheRamp();
-void twoStepTurn(int speed, int time, int turnDirection, int driveDirection);
-void turn(int speed, int time, int direction);
-void drive(int speed, int distance, int direction);
-void moveServo(int port, int position, int speed);
-
-
-///////////////////////////////////////////////////////////////////////////////
-//main method
-///////////////////////////////////////////////////////////////////////////////
-
-int main()
-{
-
-    set_servo_position(raise_robot, low);
-    enable_servos();
-    moveServo(2, 350, 50);
-    //drive(100, 30, backward);
-    motor (left_motor, -100*l_motor_factor);
-    motor (right_motor, -100*r_motor_factor);
-msleep(1500);
-   
-        set_servo_position(raise_robot, rampPosition);       
-    msleep(2000);
-    driveUpTheRamp();
-    drive(75, 5, forward);
-    twoStepTurn(75, 860, right, backward);// this is a place that it could go wrong bc I changed it to backward from forward
-    // initial two stage turn procedure
-    drive(75, 5, forward);
-    twoStepTurn(75, 860, right, backward);// this is a place that it could go wrong bc I changed it to backward from forward
-    return 0;
-}
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 //method definitions
@@ -213,3 +112,15 @@ Parameters  : int wheelPosition - the position to which the wheels are moved(0-2
 void moveWheels(int wheelPosition){
   moveServo(raise_robot, wheelPosition, 50);
 }
+
+/* Name     : moveBasket
+Purpose     : moves the basket to the position specified
+Parameters  : int position - the position to which the wheels are moved(0-2047). 0 = lowest; 1000 = driving up ramp; 1630 = highest;
+
+*/
+
+void moveBasket(int position, int speed){
+   motor(0,   );
+}
+
+void

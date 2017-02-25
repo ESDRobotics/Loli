@@ -48,7 +48,7 @@ int main()
     ao();
     printf("%i\n",accel_y());
     //I think this is where we are driving up the ramp
-    /*
+
     while(accel_y()<110){
         if (analog (left_light) > 4000){
             motor (left_motor, 25);
@@ -78,7 +78,7 @@ int main()
 }
     ao();
     printf("%ioff the ramp",accel_y());
-*/
+
     set_servo_position(lift_arm, 1430);
     while(get_servo_position(raise_robot)<900){
         set_servo_position(raise_robot, get_servo_position(raise_robot)+20);
@@ -135,4 +135,8 @@ void drive(int speed, int distance, int direction){
 		motor (right_motor, (int)(speed*direction));
 	}
 	msleep(0);
+}
+
+void moveServo( into port, int position){
+
 }

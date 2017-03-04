@@ -1,5 +1,54 @@
 
 ///////////////////////////////////////////////////////////////////////////////
+//preprocessor definitions
+///////////////////////////////////////////////////////////////////////////////
+
+// general usefull information
+#define ticks 955.8
+#define ticks_per_centimeter ticks/18
+#define l_motor_factor  1//0.55
+#define r_motor_factor 1
+
+#define axisSensor 30
+
+//servos and motors
+#define left_motor 0
+#define right_motor 1
+#define lift_arm 2//farthest is 1200, closest is 170
+#define raise_robot 0//1630 is highest, 140 is lowest
+#define lift_claw 3//-100 is highest, 2360 is lowest
+#define open_claw 1//2000 is closed, 900 is open
+
+// sensors
+#define left_light 1
+#define right_light 0
+
+// directions for driviing and turns
+#define forward 1
+#define backward -1
+#define right -1
+#define left 1
+
+// positons for the wheels
+#define tall 1630
+#define low 0
+#define rampPosition 800
+
+// positions fior the basket
+#define basket_up -1800
+
+///////////////////////////////////////////////////////////////////////////////
+// fucntion definitons
+///////////////////////////////////////////////////////////////////////////////
+void moveWheels(int wheelPosition);
+void driveUpTheRamp();
+void twoStepTurn(int speed, int time, int turnDirection, int driveDirection);
+void turn(int speed, int time, int direction);
+void drive(int speed, int distance, int direction);
+void moveServo(int port, int position, int speed);
+void moveBasket(int position, int speed);
+
+///////////////////////////////////////////////////////////////////////////////
 //method definitions
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -120,7 +169,10 @@ Parameters  : int position - the position to which the wheels are moved(0-2047).
 */
 
 void moveBasket(int position, int speed){
-   motor(0,   );
+  int direction = (position - get_motor_position_counter(2))/abs((position - get_motor_position_counter(2)));
+   while(msleep(50), abs(get_motor_position_counter(2)-position)>50){
+     motor(2, speed*direction);
+     moveServo(lift_arm,get_servo_position(lift_arm)-20, 100);
+     moveServo(lift_arm,get_servo_position(lift_arm)+20, 100);
+   }
 }
-
-void
